@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西华航空</title>
+
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron jumb-1 text-center" style="margin-bottom:0">
+    <h1>西华航空公司</h1>
+
+
+</div>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">www.xhuair.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav ">
+                <li class="active"><a href="#">xhu航空公司</a></li>
+                <li><a href="https://blog.csdn.net/fightte"><span>机票订购</span></a></li>
+                <li><a href="page_1_web/cat_borrow/cat.html"><span>业务查询</span></a></li>
+                <li><a href="http://www.bilibili.com"><span>我要取票</span></a></li>
+                <li><a href="http://www.bilibili.com"><span>  </span></a></li>
+                <li><a href=""><span>欢迎用户：</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href=""><span>个人中心</span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--  abababaabb   nav is over!!! --->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 " style="text-align:center;">
+            <ul class="nav nav-pills nav-stacked nav_color shadow ">
+                <li class="active animate_1"><a href="/surface"><span>网站首页</span></a></li>
+                <li><a href="/surface" class="animate_1"><span>1.订取机票</span></a></li>
+                <li><a href="/myticket" class="animate_1"><span>2.我的机票</span></a></li>
+                <li><a href="/myticket" class="animate_1"><span>3.退票服务</span></a></li>
+
+            </ul>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <!--  right  part  -->
+
+        <div class="col-sm-8">
+
+            <h5>全局查询</h5>
+            <form class="form-horizontal" role="form" th:action="@{/select_myticket_all}" th:method="get">
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">全局查询</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="demo"
+                               placeholder="输入任意信息查询">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">查询</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-hover">
+                <caption>查询到的航空机票：</caption>
+                <thead>
+                <tr >
+                    <th >起始地点</th>
+                    <th >起飞时间</th>
+                    <th >编号</th>
+                    <th >机票剩余数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item:${info2}">
+                    <td th:text="${item.project}"></td>
+                    <td th:text="${item.detail}"></td>
+                    <td th:text="${item.code}"></td>
+                    <td th:text="${item.num}"></td>
+                    <td><button type="button" class="btn btn-primary" ><a th:href="'order?code='+${item.code}+'&detail='+${item.detail}+'&project='+${item.project}">订票</a></button></td>
+
+                </tr>
+
+                <!--    <a th:href="@{'/order'+${item.code}}">-->
+                </tbody>
+
+            </table>
+
+            <table class="table table-hover">
+                <caption>航空机票选购</caption>
+                <thead>
+                <tr >
+                    <th >起始地点</th>
+                    <th >起飞时间</th>
+                    <th >编号</th>
+                    <th >机票剩余数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item:${info}">
+                    <td th:text="${item.project}"></td>
+                    <td th:text="${item.detail}"></td>
+                    <td th:text="${item.code}"></td>
+                    <td th:text="${item.num}"></td>
+                    <td><button type="button" class="btn btn-primary" ><a th:href="'order?code='+${item.code}+'&detail='+${item.detail}+'&project='+${item.project}">订票</a></button></td>
+                </tr>
+
+<!--                <a th:href="@{'/order'+${item.code}}">-->
+                </tbody>
+            </table>
+            <p style="color: red" th:text="${msg}"></p>
+        </div>
+
+        <div class="col-sm-12">
+            <h2>欢迎！ <small>一路顺风是吧</small></h2>
+
+            <!--轮播图-->
+
+            <div class="carousel slide" id="slidershow" data-ride="carousel" data-interval="2500">
+                <!--计数器-->
+                <ol class="carousel-indicators">
+                    <li class="active" data-target="#slidershow" data-slide-to="0"></li>
+                    <li data-target="#slidershow" data-slide-to="1"></li>
+                    <li data-target="#slidershow" data-slide-to="2"></li>
+                    <li data-target="#slidershow" data-slide-to="3"></li>
+                </ol>
+                <!--图片容器-->
+                <div class="carousel-inner wid">
+                    <div class="item active">
+                        <img src="http://www.fight123.top/image1/p1.jpg"/>
+                        <!--添加对应标题和内容-->
+                        <div class="carousel-caption">
+                            <h4>mountain</h4>
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://www.fight123.top/image1/p2.jpg"/>
+                        <!--添加对应标题和内容-->
+                        <div class="carousel-caption">
+                            <h4>air</h4>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://www.fight123.top/image1/p3.jpg"/>
+                        <!--添加对应标题和内容-->
+                        <div class="carousel-caption">
+                            <h4>Sea</h4>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://www.fight123.top/image1/p4.jpg"/>
+                        <!--添加对应标题和内容-->
+                        <div class="carousel-caption">
+                            <h4>Water</h4>
+                        </div>
+                    </div>
+                    <!--轮播导航-->
+                    <a href="#slidershow" data-slide="prev" class="left carousel-control" role="button">
+
+                    </a>
+                    <a href="#slidershow" data-slide="next" class="right carousel-control" role="button">
+
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+
+
+</div>
+<p>@2021 TM </p>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>西华航空公司</p>
+    <button class="animate_1"><span><a th:href="@{/admin}">注册</a></span></button>
+</div>
+
+</body>
+<style>
+    a{
+        outline: none;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    a:hover{
+        color: black;
+    }
+    .jumb-1{
+        background-image: url("http://www.fight123.top/image1/p1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        color: white;
+    }
+    .img-com{
+        height: 180px;
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color:white;
+        background-color:rgba(0, 0, 0, 0.507);
+    }
+    .nav_color{
+        background-color: rgba(0, 0, 255, 0.37);
+        border-radius: 8px;
+
+    }
+    .shadow{
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.425);
+    }
+    .animate_1 span{  /*增加动画效果，让其可以动*/
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .animate_1 span:after { /*悬停后让其动起来*/
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+    }
+    .animate_1:hover span:after { /*还并不知道是干嘛的*/
+        opacity: 1;
+        right: 0;
+    }
+    .animate_1:hover span {
+        padding-right: 25px;
+    }
+</style>
+</html>

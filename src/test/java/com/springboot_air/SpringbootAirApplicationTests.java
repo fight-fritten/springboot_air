@@ -1,0 +1,13 @@
+package com.springboot_air;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SpringbootAirApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

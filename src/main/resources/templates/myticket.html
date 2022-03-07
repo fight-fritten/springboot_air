@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西华航空</title>
+
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron jumb-1 text-center" style="margin-bottom:0">
+    <h1>西华航空公司</h1>
+
+
+</div>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">www.xhuair.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav ">
+                <li class="active"><a href="#">xhu航空公司</a></li>
+                <li><a href="https://blog.csdn.net/fightte"><span>机票订购</span></a></li>
+                <li><a href="page_1_web/cat_borrow/cat.html"><span>业务查询</span></a></li>
+                <li><a href="http://www.bilibili.com"><span>我要取票</span></a></li>
+                <li><a href="http://www.bilibili.com"><span>  </span></a></li>
+                <li><a href=""><span>欢迎用户：</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href=""><span>个人中心</span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--  abababaabb   nav is over!!! --->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 " style="text-align:center;">
+            <ul class="nav nav-pills nav-stacked nav_color shadow ">
+                <li class="active animate_1"><a href="/surface"><span>网站首页</span></a></li>
+                <li><a href="/surface" class="animate_1"><span>1.订取机票</span></a></li>
+                <li><a href="/myticket" class="animate_1"><span>2.我的机票</span></a></li>
+                <li><a href="/myticket" class="animate_1"><span>3.退票服务</span></a></li>
+
+            </ul>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <!--  right  part  -->
+
+        <div class="col-sm-8">
+            <table class="table table-hover">
+                <caption style="color: red;">我的机票: <span th:text="${tips}"></span> </caption>
+                <thead>
+                <tr >
+                    <th >用户名</th>
+                    <th>起始地点</th>
+                    <th >起飞时间</th>
+                    <th >编号</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item:${info}">
+                    <td th:text="${item.username}"></td>
+                    <td th:text="${item.project}"></td>
+                    <td th:text="${item.detail}"></td>
+                    <td th:text="${item.code}"></td>
+
+<!--                    <td th:text="${item.username}"></td>-->
+                    <td><button type="button" class="btn btn-danger" ><a th:href="'return?code='+${item.code}">退票</a></button></td>
+                </tr>
+
+<!--                <a th:href="@{'/order'+${item.code}}">-->
+                </tbody>
+            </table>
+
+        </div>
+
+       
+
+
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+
+
+</div>
+<p>@2021 TM </p>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>西华航空公司</p>
+    <button class="animate_1"><span>点击此处，了解更多</span></button>
+</div>
+
+</body>
+<style>
+    a{
+        outline: none;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    a:hover{
+        color: black;
+    }
+    .jumb-1{
+        background-image: url("http://www.fight123.top/image1/p1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        color: white;
+    }
+    .img-com{
+        height: 180px;
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color:white;
+        background-color:rgba(0, 0, 0, 0.507);
+    }
+    .nav_color{
+        background-color: rgba(0, 0, 255, 0.37);
+        border-radius: 8px;
+
+    }
+    .shadow{
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.425);
+    }
+    .animate_1 span{  /*增加动画效果，让其可以动*/
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .animate_1 span:after { /*悬停后让其动起来*/
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+    }
+    .animate_1:hover span:after { /*还并不知道是干嘛的*/
+        opacity: 1;
+        right: 0;
+    }
+    .animate_1:hover span {
+        padding-right: 25px;
+    }
+</style>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!--引入thymeleaf-->
+<head>
+<meta charset="utf-8">
+<title>注册</title>
+
+<link rel="stylesheet" type="text/css" href="./colorui/main.css">
+<link rel="stylesheet" type="text/css" href="./colorui/animation.css">
+</head>
+<body>
+
+    <div id="banner" class="banner">
+        西华航空
+      </div>
+<div class="main trans shadow" id="app1">
+
+    <div class="title">
+        <span class="title-2">注册</span>
+    </div>  
+    <form class="form1" id="main" th:action="@{/register}" type="post">
+        <div class="div-in-1 animate_1">
+            <span>用户名</span>
+            <input type="text" name="username">
+        </div>
+        <div class="div-in-2 animate_1">
+            <span>密码:</span>
+            <input type="text" name="passwd">
+        </div>
+        <div class="div-in-2 animate_1">
+            <span>确认密码:</span>
+            <input type="text" name="passwd_2">
+        </div>
+
+        <div class="botbox">
+
+            <button type="submit" class="btn-1">注册</button>
+            <a th:href="@{/}"><button type="button" class="btn-1"><span>返回</span></button></a>
+
+
+
+            <p style="color: red; padding-top: 25px;" th:text="${msg}"></p>
+        </div>
+    </form>
+
+</div>
+
+<script>
+
+</script>
+</body>
+<style>
+    a{
+        text-decoration: none;
+        outline: none;
+    }
+    .main{
+        height: 250px;
+        width: 400px;
+        border-radius: 10px;
+        padding: auto;
+        margin: auto;
+    }
+    .banner{
+        padding: auto;
+        margin: 20px;
+        text-align: center;
+    }
+    .title{
+        text-align: center;
+        padding-top: 10%;
+        
+    }
+    input{
+        text-align: center;
+        margin: 10px;
+        border: none;
+        border-radius: 6px;
+    
+    }
+    .div-in-1{
+        text-align: center;
+        padding-top: 10%;
+    }
+    .div-in-2{
+        text-align: center;
+        padding: auto;
+        padding-left: 3%;
+    }
+    .trans{
+        background-color: rgba(255, 238, 0, 0.486);
+    }
+    .botbox{
+        padding: auto;
+        margin:auto;
+        text-align: center;
+        
+    }
+    .shadow{
+        box-shadow: 0 10px 12px rgba(255, 166, 0, 0.247);
+    }
+    .reg{
+        font-size: 6px;
+        padding-top: 12px;
+    }
+    .btn-1{
+        margin-left: 10px;
+        width: 100px;
+        margin-top:10px ;
+        background-color:whitesmoke;
+        color: brown;
+        border-radius: 12px;
+        border:none;
+        cursor: pointer;
+        text-decoration: none;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+    }
+    .btn-1:hover{
+        background-color: orange;
+        color: white;
+        box-shadow: 0 8px 10px rgba(0, 0, 0, 0.253);
+    }
+    .reg-l:hover{
+        color: white;
+        cursor: pointer;
+    }
+  
+    .for-l:hover{
+        color: yellow;
+        cursor: pointer;
+    }
+    .animate_1 span{  /*增加动画效果，让其可以动*/
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .animate_1 span:after { /*悬停后让其动起来*/
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    .animate_1:hover span:after { /*还并不知道是干嘛的*/
+        opacity: 1;
+        right: 0;
+    }
+    .animate_1:hover span {
+        padding-right: 35px;
+    }
+</style>
+</html>

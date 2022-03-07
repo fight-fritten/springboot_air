@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西华航空</title>
+
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        window.onload=function (){
+            var code = document.getElementById("code"); //获取编号，进行传输
+            document.getElementById("input-code").value=code.innerHTML;
+        }
+    </script>
+</head>
+<body>
+
+<div class="jumbotron jumb-1 text-center" style="margin-bottom:0">
+    <h1>西华航空公司</h1>
+
+
+</div>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">www.xhuair.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+
+        </div>
+    </div>
+</nav>
+
+<!--  abababaabb   nav is over!!! --->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 " style="text-align:center;">
+
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <!--  right  part  -->
+
+        <div class="col-sm-8">
+
+            <h5>更改信息页面</h5>
+
+
+            <hr>
+            <table class="table table-hover">
+
+                <thead>
+                <tr >
+                    <th >起始地点</th>
+                    <th >起飞时间</th>
+                    <th >编号</th>
+                    <th >机票剩余数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <td th:text="${project}"></td>
+                    <td th:text="${detail}"></td>
+                    <td th:text="${code}" id="code"></td>
+                    <td th:text="${num}"></td>
+
+
+                </tr>
+
+                <!--    <a th:href="@{'/order'+${item.code}}">-->
+                </tbody>
+
+            </table>
+
+            <hr>
+            <h5>选择更改</h5>
+            <form class="form-horizontal" role="form" th:action="@{/update}" th:method="get">
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">业务编号：</label>
+                    <div class="col-sm-10">
+                        <input id="input-code" type="text" class="form-control" name="code"
+                               readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">你想更改的类型是：</label>
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" name="pro" id="optionsRadios1" value="project" checked> 起始地点
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="pro" id="optionsRadios2"  value="detail"> 时间
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="pro" id="optionsRadios3" value="code"> 号码
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="pro" id="optionsRadios4"  value="num"> 所剩数量
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">更改为：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="demo"
+                               placeholder="输入想更改为的数值">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a><button type="submit" class="btn btn-danger">更改</button></a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+
+
+</div>
+<p>@2021 TM </p>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>西华航空公司</p>
+    <button class="animate_1"><span><a th:href="@{/admin}">首页</a></span></button>
+</div>
+
+</body>
+<style>
+    a{
+        outline: none;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    a:hover{
+        color: black;
+    }
+    .jumb-1{
+        background-image: url("http://www.fight123.top/image1/p1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        color: white;
+    }
+    .img-com{
+        height: 180px;
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color:white;
+        background-color:rgba(0, 0, 0, 0.507);
+    }
+    .nav_color{
+        background-color: rgba(0, 0, 255, 0.37);
+        border-radius: 8px;
+
+    }
+    .shadow{
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.425);
+    }
+    .animate_1 span{  /*增加动画效果，让其可以动*/
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .animate_1 span:after { /*悬停后让其动起来*/
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+    }
+    .animate_1:hover span:after { /*还并不知道是干嘛的*/
+        opacity: 1;
+        right: 0;
+    }
+    .animate_1:hover span {
+        padding-right: 25px;
+    }
+</style>
+</html>
